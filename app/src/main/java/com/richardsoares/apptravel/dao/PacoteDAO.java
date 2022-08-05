@@ -1,6 +1,6 @@
 package com.richardsoares.apptravel.dao;
 
-import com.richardsoares.apptravel.ui.model.Pacote;
+import com.richardsoares.apptravel.model.Pacote;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

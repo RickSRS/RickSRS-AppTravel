@@ -1,4 +1,4 @@
-package com.richardsoares.apptravel.ui.model;
+package com.richardsoares.apptravel.model;
 
 import java.math.BigDecimal;
 
