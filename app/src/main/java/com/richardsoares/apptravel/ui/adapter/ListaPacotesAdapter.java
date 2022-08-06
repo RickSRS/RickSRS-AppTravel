@@ -44,6 +44,7 @@ public class ListaPacotesAdapter extends BaseAdapter {
         return 0;
     }
 
+
     @Override
     public View getView(int index, View view, ViewGroup parent) {
         View viewCriada = LayoutInflater
