@@ -1,7 +1,6 @@
 package com.richardsoares.apptravel.ui.adapter;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +11,11 @@ import android.widget.TextView;
 
 import com.richardsoares.apptravel.R;
 import com.richardsoares.apptravel.model.Pacote;
+import com.richardsoares.apptravel.util.DiasUtil;
+import com.richardsoares.apptravel.util.MoedaUtil;
+import com.richardsoares.apptravel.util.ResourceUtil;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class ListaPacotesAdapter extends BaseAdapter {
 
@@ -44,7 +42,6 @@ public class ListaPacotesAdapter extends BaseAdapter {
         return 0;
     }
 
-
     @Override
     public View getView(int index, View view, ViewGroup parent) {
         View viewCriada = LayoutInflater
@@ -62,32 +59,19 @@ public class ListaPacotesAdapter extends BaseAdapter {
 
     private void exibePreco(View viewCriada, Pacote pacote) {
         TextView pacotePreco = viewCriada.findViewById(R.id.item_pacote_preco);
-        BigDecimal precoPacote = pacote.getPreco();
-        NumberFormat formatoBrasileiro = DecimalFormat.getCurrencyInstance(new Locale("pt", "br"));
-        String precoFormatado = formatoBrasileiro
-                .format(precoPacote)
-                .replace("R$", "R$ ");
+        String precoFormatado = MoedaUtil.formataMoedaParaBrasileiro(pacote.getPreco());
         pacotePreco.setText(precoFormatado);
     }
 
     private void exibeDias(View viewCriada, Pacote pacote) {
         TextView pacoteDias = viewCriada.findViewById(R.id.item_pacote_dias);
-        String diasEmTexto = "";
-        int qtdDias = pacote.getDias();
-        if (qtdDias > 1) {
-            diasEmTexto = qtdDias + " dias";
-        } else {
-            diasEmTexto = qtdDias + " dia";
-        }
+        String diasEmTexto = DiasUtil.formataEmTexto(pacote.getDias());
         pacoteDias.setText(diasEmTexto);
     }
 
     private void exibeImagem(View viewCriada, Pacote pacote) {
         ImageView pacoteImagem = viewCriada.findViewById(R.id.item_pacote_imagem);
-        Resources resources = context.getResources();
-        int idDrawable = resources.getIdentifier(pacote.getImagem(),
-                "drawable", context.getPackageName());
-        Drawable drawableImagemPacote = resources.getDrawable(idDrawable);
+        Drawable drawableImagemPacote = ResourceUtil.devolveDrawable(context, pacote.getImagem());
         pacoteImagem.setImageDrawable(drawableImagemPacote);
     }
 
