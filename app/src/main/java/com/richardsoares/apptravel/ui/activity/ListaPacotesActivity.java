@@ -29,13 +29,15 @@ public class ListaPacotesActivity extends AppCompatActivity {
 
     private void configuraLista() {
         ListView listaPacotes = findViewById(R.id.lista_pacotes_listview);
-        List<Pacote> pacotes = new PacoteDAO().lista();
+        final List<Pacote> pacotes = new PacoteDAO().lista();
         listaPacotes.setAdapter(new ListaPacotesAdapter(pacotes, this));
 
         listaPacotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
+                Pacote pacoteSelecionado = pacotes.get(index);
                 Intent intent = new Intent(ListaPacotesActivity.this, ResumoPacoteActivity.class);
+                intent.putExtra("pacote", pacoteSelecionado);
                 startActivity(intent);
             }
         });

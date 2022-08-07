@@ -12,6 +12,7 @@ import com.richardsoares.apptravel.R;
 import com.richardsoares.apptravel.model.Pacote;
 import com.richardsoares.apptravel.util.MoedaUtil;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class PagamentoActivity extends AppCompatActivity {
@@ -24,18 +25,21 @@ public class PagamentoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pagamento);
         setTitle(TITULO_APPBAR);
 
-        Pacote pacote = new Pacote("São Paulo", "sao_paulo_sp", 2, new BigDecimal("243.99"));
+        Intent intent = getIntent();
+        if (intent.hasExtra("pacote")) {
+            final Pacote pacote = (Pacote) intent.getSerializableExtra("pacote");
+            exibePreco(pacote);
 
-        exibePreco(pacote);
-
-        Button finalizaCompra = findViewById(R.id.pagamento_btn_finaliza_compra);
-        finalizaCompra.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PagamentoActivity.this, ResumoCompraActivity.class);
-                startActivity(intent);
-            }
-        });
+            Button finalizaCompra = findViewById(R.id.pagamento_btn_finaliza_compra);
+            finalizaCompra.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(PagamentoActivity.this, ResumoCompraActivity.class);
+                    intent.putExtra("pacote", pacote);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private void exibePreco(Pacote pacote) {

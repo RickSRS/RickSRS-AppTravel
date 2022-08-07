@@ -1,5 +1,6 @@
 package com.richardsoares.apptravel.ui.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -23,15 +24,16 @@ public class ResumoCompraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_compra);
-
         setTitle(TITULO_APPBAR);
 
-        Pacote pacote = new Pacote("São Paulo", "sao_paulo_sp", 2, new BigDecimal("243.99"));
-
-        exibeLocal(pacote);
-        exibeImagem(pacote);
-        exibeData(pacote);
-        exibePreco(pacote);
+        Intent intent = getIntent();
+        if (intent.hasExtra("pacote")) {
+            final Pacote pacote = (Pacote) intent.getSerializableExtra("pacote");
+            exibeLocal(pacote);
+            exibeImagem(pacote);
+            exibeData(pacote);
+            exibePreco(pacote);
+        }
     }
 
     private void exibePreco(Pacote pacote) {

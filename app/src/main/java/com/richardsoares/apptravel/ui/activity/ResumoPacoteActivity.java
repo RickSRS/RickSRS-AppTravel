@@ -18,6 +18,7 @@ import com.richardsoares.apptravel.util.DiasUtil;
 import com.richardsoares.apptravel.util.MoedaUtil;
 import com.richardsoares.apptravel.util.ResourceUtil;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,25 +31,28 @@ public class ResumoPacoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_pacote);
-
         setTitle(TITULO_APPBAR);
 
-        Pacote pacote = new Pacote("São Paulo", "sao_paulo_sp", 2, new BigDecimal("243.99"));
+        Intent intent = getIntent();
+        if (intent.hasExtra("pacote")) {
+            final Pacote pacote = (Pacote) intent.getSerializableExtra("pacote");
 
-        exibeLocal(pacote);
-        exibeImagem(pacote);
-        exibeDias(pacote);
-        exibePreco(pacote);
-        exibeData(pacote);
+            exibeLocal(pacote);
+            exibeImagem(pacote);
+            exibeDias(pacote);
+            exibePreco(pacote);
+            exibeData(pacote);
 
-        Button realizaPagamento = findViewById(R.id.resumo_pacote_btn_realizar_pagamento);
-        realizaPagamento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ResumoPacoteActivity.this, PagamentoActivity.class);
-                startActivity(intent);
-            }
-        });
+            Button realizaPagamento = findViewById(R.id.resumo_pacote_btn_realizar_pagamento);
+            realizaPagamento.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ResumoPacoteActivity.this, PagamentoActivity.class);
+                    intent.putExtra("pacote", pacote);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private void exibeData(Pacote pacote) {
