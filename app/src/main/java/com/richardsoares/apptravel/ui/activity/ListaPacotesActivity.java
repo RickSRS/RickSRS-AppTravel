@@ -4,8 +4,6 @@ import static com.richardsoares.apptravel.ui.activity.PacoteActivityConstantes.C
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,12 +32,9 @@ public class ListaPacotesActivity extends AppCompatActivity {
         final List<Pacote> pacotes = new PacoteDAO().lista();
 
         listaPacotes.setAdapter(new ListaPacotesAdapter(pacotes, this));
-        listaPacotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
-                Pacote pacoteSelecionado = pacotes.get(index);
-                vaiParaResumoPacote(pacoteSelecionado);
-            }
+        listaPacotes.setOnItemClickListener((parent, view, index, id) -> {
+            Pacote pacoteSelecionado = pacotes.get(index);
+            vaiParaResumoPacote(pacoteSelecionado);
         });
     }
 

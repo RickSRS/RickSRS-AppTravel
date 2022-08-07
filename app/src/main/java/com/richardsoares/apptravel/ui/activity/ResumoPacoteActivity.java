@@ -5,7 +5,6 @@ import static com.richardsoares.apptravel.ui.activity.PacoteActivityConstantes.C
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,12 +41,7 @@ public class ResumoPacoteActivity extends AppCompatActivity {
 
     private void configuraBotao(Pacote pacote) {
         Button realizaPagamento = findViewById(R.id.resumo_pacote_btn_realizar_pagamento);
-        realizaPagamento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vaiParaPagamento(pacote);
-            }
-        });
+        realizaPagamento.setOnClickListener(v -> vaiParaPagamento(pacote));
     }
 
     private void vaiParaPagamento(Pacote pacote) {

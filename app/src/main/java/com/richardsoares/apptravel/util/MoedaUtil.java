@@ -14,10 +14,9 @@ public class MoedaUtil {
 
     public static String formataMoedaParaBrasileiro(BigDecimal preco) {
         NumberFormat formatoBrasileiro = DecimalFormat.getCurrencyInstance(new Locale(PORTUGUES, BRASIL));
-        String precoFormatado = formatoBrasileiro
+        return formatoBrasileiro
                 .format(preco)
                 .replace(FORMATADO_PADRAO, FORMATO_COM_ESPACO);
-        return precoFormatado;
     }
 
 }

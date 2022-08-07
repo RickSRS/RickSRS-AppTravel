@@ -12,7 +12,6 @@ public class ResourceUtil {
         Resources resources = context.getResources();
         int idDrawable = resources.getIdentifier(drawableEmTexto,
                 DRAWABLE_STR, context.getPackageName());
-        Drawable drawableImagemPacote = resources.getDrawable(idDrawable);
-        return drawableImagemPacote;
+        return resources.getDrawable(idDrawable);
     }
 }

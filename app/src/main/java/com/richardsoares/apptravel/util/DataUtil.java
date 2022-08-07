@@ -14,8 +14,7 @@ public class DataUtil {
         SimpleDateFormat formatoBrasileiro = new SimpleDateFormat(DIA_E_MES);
         String dataFormatadaIda = formatoBrasileiro.format(dataIda.getTime());
         String dataFormatadaVolta = formatoBrasileiro.format(dataVolta.getTime());
-        String dataFormatadaDaViagem = dataFormatadaIda + " - " + dataFormatadaVolta + " de " + dataVolta.get(Calendar.YEAR);
-        return dataFormatadaDaViagem;
+        return dataFormatadaIda + " - " + dataFormatadaVolta + " de " + dataVolta.get(Calendar.YEAR);
     }
 
 }

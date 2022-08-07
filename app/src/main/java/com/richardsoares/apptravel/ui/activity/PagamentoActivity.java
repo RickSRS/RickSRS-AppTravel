@@ -4,7 +4,6 @@ import static com.richardsoares.apptravel.ui.activity.PacoteActivityConstantes.C
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,12 +36,7 @@ public class PagamentoActivity extends AppCompatActivity {
 
     private void configuraBotao(Pacote pacote) {
         Button finalizaCompra = findViewById(R.id.pagamento_btn_finaliza_compra);
-        finalizaCompra.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vaiParaResumo(pacote);
-            }
-        });
+        finalizaCompra.setOnClickListener(v -> vaiParaResumo(pacote));
     }
 
     private void vaiParaResumo(Pacote pacote) {
