@@ -1,5 +1,7 @@
 package com.richardsoares.apptravel.ui.activity;
 
+import static com.richardsoares.apptravel.ui.activity.PacoteActivityConstantes.CHAVE_PACOTE;
+
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,8 +16,6 @@ import com.richardsoares.apptravel.util.DataUtil;
 import com.richardsoares.apptravel.util.MoedaUtil;
 import com.richardsoares.apptravel.util.ResourceUtil;
 
-import java.math.BigDecimal;
-
 public class ResumoCompraActivity extends AppCompatActivity {
 
     public static final String TITULO_APPBAR = "Resumo da Compra";
@@ -25,15 +25,22 @@ public class ResumoCompraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_compra);
         setTitle(TITULO_APPBAR);
+        carregaPacoteRecebido();
+    }
 
+    private void carregaPacoteRecebido() {
         Intent intent = getIntent();
-        if (intent.hasExtra("pacote")) {
-            final Pacote pacote = (Pacote) intent.getSerializableExtra("pacote");
-            exibeLocal(pacote);
-            exibeImagem(pacote);
-            exibeData(pacote);
-            exibePreco(pacote);
+        if (intent.hasExtra(CHAVE_PACOTE)) {
+            final Pacote pacote = (Pacote) intent.getSerializableExtra(CHAVE_PACOTE);
+            inicializaCampos(pacote);
         }
+    }
+
+    private void inicializaCampos(Pacote pacote) {
+        exibeLocal(pacote);
+        exibeImagem(pacote);
+        exibeData(pacote);
+        exibePreco(pacote);
     }
 
     private void exibePreco(Pacote pacote) {

@@ -1,5 +1,7 @@
 package com.richardsoares.apptravel.ui.activity;
 
+import static com.richardsoares.apptravel.ui.activity.PacoteActivityConstantes.CHAVE_PACOTE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,16 +32,20 @@ public class ListaPacotesActivity extends AppCompatActivity {
     private void configuraLista() {
         ListView listaPacotes = findViewById(R.id.lista_pacotes_listview);
         final List<Pacote> pacotes = new PacoteDAO().lista();
-        listaPacotes.setAdapter(new ListaPacotesAdapter(pacotes, this));
 
+        listaPacotes.setAdapter(new ListaPacotesAdapter(pacotes, this));
         listaPacotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
                 Pacote pacoteSelecionado = pacotes.get(index);
-                Intent intent = new Intent(ListaPacotesActivity.this, ResumoPacoteActivity.class);
-                intent.putExtra("pacote", pacoteSelecionado);
-                startActivity(intent);
+                vaiParaResumoPacote(pacoteSelecionado);
             }
         });
+    }
+
+    private void vaiParaResumoPacote(Pacote pacote) {
+        Intent intent = new Intent(ListaPacotesActivity.this, ResumoPacoteActivity.class);
+        intent.putExtra(CHAVE_PACOTE, pacote);
+        startActivity(intent);
     }
 }

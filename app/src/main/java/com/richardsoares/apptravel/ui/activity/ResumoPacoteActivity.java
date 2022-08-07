@@ -1,5 +1,7 @@
 package com.richardsoares.apptravel.ui.activity;
 
+import static com.richardsoares.apptravel.ui.activity.PacoteActivityConstantes.CHAVE_PACOTE;
+
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.richardsoares.apptravel.R;
@@ -17,11 +18,6 @@ import com.richardsoares.apptravel.util.DataUtil;
 import com.richardsoares.apptravel.util.DiasUtil;
 import com.richardsoares.apptravel.util.MoedaUtil;
 import com.richardsoares.apptravel.util.ResourceUtil;
-
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class ResumoPacoteActivity extends AppCompatActivity {
 
@@ -32,27 +28,40 @@ public class ResumoPacoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_pacote);
         setTitle(TITULO_APPBAR);
+        carregaPacoteRecebido();
+    }
 
+    private void carregaPacoteRecebido() {
         Intent intent = getIntent();
-        if (intent.hasExtra("pacote")) {
-            final Pacote pacote = (Pacote) intent.getSerializableExtra("pacote");
-
-            exibeLocal(pacote);
-            exibeImagem(pacote);
-            exibeDias(pacote);
-            exibePreco(pacote);
-            exibeData(pacote);
-
-            Button realizaPagamento = findViewById(R.id.resumo_pacote_btn_realizar_pagamento);
-            realizaPagamento.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ResumoPacoteActivity.this, PagamentoActivity.class);
-                    intent.putExtra("pacote", pacote);
-                    startActivity(intent);
-                }
-            });
+        if (intent.hasExtra(CHAVE_PACOTE)) {
+            final Pacote pacote = (Pacote) intent.getSerializableExtra(CHAVE_PACOTE);
+            inicializaCampos(pacote);
+            configuraBotao(pacote);
         }
+    }
+
+    private void configuraBotao(Pacote pacote) {
+        Button realizaPagamento = findViewById(R.id.resumo_pacote_btn_realizar_pagamento);
+        realizaPagamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vaiParaPagamento(pacote);
+            }
+        });
+    }
+
+    private void vaiParaPagamento(Pacote pacote) {
+        Intent intent = new Intent(ResumoPacoteActivity.this, PagamentoActivity.class);
+        intent.putExtra(CHAVE_PACOTE, pacote);
+        startActivity(intent);
+    }
+
+    private void inicializaCampos(Pacote pacote) {
+        exibeLocal(pacote);
+        exibeImagem(pacote);
+        exibeDias(pacote);
+        exibePreco(pacote);
+        exibeData(pacote);
     }
 
     private void exibeData(Pacote pacote) {
