@@ -11,53 +11,51 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:background="@android:color/holo_orange_dark"
-        android:contentDescription="@string/banner_inicial_dos_pacotes"
+        android:contentDescription="@string/banner_inicial_resumo_da_compra"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/resumo_compra_parabens"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Parabéns!"
+        android:layout_margin="8dp"
+        android:text="@string/parabens"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/resumo_compra_banner_inicial"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/resumo_compra_banner_inicial"
         app:layout_constraintStart_toStartOf="@+id/resumo_compra_banner_inicial"
         app:layout_constraintTop_toTopOf="@+id/resumo_compra_banner_inicial"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/resumo_compra_realizada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Compra realizada com sucesso :)"
+        android:layout_margin="8dp"
+        android:text="@string/compra_realizada_com_sucesso"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/resumo_compra_parabens"
         app:layout_constraintStart_toStartOf="@+id/resumo_compra_parabens"
-        app:layout_constraintTop_toBottomOf="@+id/resumo_compra_parabens" />
+        app:layout_constraintTop_toBottomOf="@+id/resumo_compra_parabens"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/resumo_compra_confira"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Confira o resumo da compra:"
+        android:layout_margin="8dp"
+        android:text="@string/confira_o_resumo_da_compra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resumo_compra_banner_inicial" />
@@ -71,14 +69,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resumo_compra_confira"
-        app:srcCompat="@drawable/sao_paulo_sp" />
+        tools:srcCompat="@drawable/sao_paulo_sp"
+        android:contentDescription="@string/resumo_compra_imagem_pacote" />
 
     <TextView
         android:id="@+id/resumo_compra_local"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resumo_compra_imagem_pacote"
         tools:text="São Paulo" />

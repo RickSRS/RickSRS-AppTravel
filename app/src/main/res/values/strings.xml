@@ -15,4 +15,9 @@
     <string name="mask_nome_do_cartao">AaBbCcÇçDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz\u0020</string>
     <string name="nome_do_cartao">Nome do cartão</string>
     <string name="pagamento_btn_finalizar_compra">Finalizar Compra</string>
+    <string name="banner_inicial_resumo_da_compra">Banner inicial resumo da compra</string>
+    <string name="parabens">Parabéns!</string>
+    <string name="compra_realizada_com_sucesso">Compra realizada com sucesso :)</string>
+    <string name="confira_o_resumo_da_compra">Confira o resumo da compra:</string>
+    <string name="resumo_compra_imagem_pacote">Imagem do pacote comprado</string>
 </resources>
